@@ -1,4 +1,5 @@
 question_num = 0
+all_data = []
 started = false
 
 window.addEventListener 'load', () ->
@@ -49,11 +50,9 @@ next_test = () ->
 			.appendTo("#button_list")
 			.one 'click', ->
 				attempts += 1
-				console.log(color)
-				console.log(name.toLowerCase())
 				if name.toLowerCase() is color
 					question_num += 1
-					console.log({
+					all_data.push({
 						color: color,
 						word: word,
 						elapsed: Date.now() - t_start,
@@ -75,9 +74,11 @@ splash = () ->
 			$(this).remove()
 			$(".btn-next").removeClass("hidden")
 			unsplash()
-	else
+	else if question_num < combinations.length
 		$(".btn-next").one 'click', ->
 			unsplash()
+	else
+		finished()
 
 unsplash = () ->
 	$(".test-container").show()
@@ -85,6 +86,11 @@ unsplash = () ->
 	next_test()
 
 finished = () ->
+	$.post("/test/submit-data", {  test_data:all_data } )
+	$(".test-container").hide()
+	$(".splash-screen").hide()
+	$(".end-screen").removeClass("hidden")
+	window.location = "/"
 
 
 splash()
