@@ -47,7 +47,7 @@ next_test = () ->
 			.addClass("btn btn-large")
 			.text(name)
 			.appendTo("#button_list")
-			.click ->
+			.one 'click', ->
 				attempts += 1
 				console.log(color)
 				console.log(name.toLowerCase())
@@ -70,19 +70,21 @@ splash = () ->
 	$(".bar").css("width",  (question_num/combinations.length)*100 + "%")
 
 	if not started
-		$(".btn-start").click ->
+		$(".btn-start").one 'click', ->
 			started = true
 			$(this).remove()
 			$(".btn-next").removeClass("hidden")
 			unsplash()
 	else
-		$(".btn-next").click ->
+		$(".btn-next").one 'click', ->
 			unsplash()
 
 unsplash = () ->
 	$(".test-container").show()
 	$('.splash-screen').addClass("hidden")
 	next_test()
+
+finished = () ->
 
 
 splash()
