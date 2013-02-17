@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  display_word: MyString
+  text_color: MyString
+  response_time: 1
+  question_num: 1
+  attempts: 1
+
+two:
+  display_word: MyString
+  text_color: MyString
+  response_time: 1
+  question_num: 1
+  attempts: 1

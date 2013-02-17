@@ -1,0 +1,52 @@
+<h1> Sup </h1>
+
+<!-- var color_map = {
+    Yellow: "#EFCC00",
+    Blue: "#0093AF",
+    Red: "#F2003C",
+    Black: "#000000",
+    Green: "#687d00"
+}
+
+function fisher_yates(array) {
+    var m = array.length, t, i;
+    while (m) {
+        i = Math.floor(Math.random() * m--);
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+    }
+    return array;
+}
+
+function next_test(){
+    var names = Object.keys(color_map);
+    var key = names[Math.floor(names.length * Math.random())];
+    var random = names[Math.floor(names.length * Math.random())];
+    $(".test-text").text(random).css("color", color_map[key]);
+    var t_start = Date.now();
+    var attempts = 0;
+    $("#button_list").empty();
+    fisher_yates(names).map(function(name){
+        $("<button>")
+            .addClass("btn btn-large")
+            .text(name)
+            .appendTo("#button_list")
+            .click(function(){
+                attempts++;
+                if(name == key){
+                    console.log({
+                        key: key,
+                        random: random,
+                        elapsed: Date.now() - t_start,
+                        attempts: attempts
+                    })
+                    next_test()
+                }else{
+                    $(this).remove()
+                }
+            })
+    })
+}
+
+next_test() -->
