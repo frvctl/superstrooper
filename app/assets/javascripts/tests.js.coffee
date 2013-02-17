@@ -1,4 +1,5 @@
 question_num = 0
+started = false
 
 window.addEventListener 'load', () ->
 	new FastClick(document.body);
@@ -62,16 +63,26 @@ next_test = () ->
 				else
 					$(this).remove()
 
-
-next_test()
-
 splash = () ->
 	$(".test-container").hide()
 	$(".splash-screen").removeClass("hidden")
+	$(".progress-text").text("Progress - " + question_num + "/" + combinations.length)
 	$(".bar").css("width",  (question_num/combinations.length)*100 + "%")
-	$(".btn-next").click ->
-		$(".test-container").show()
-		$('.splash-screen').addClass("hidden")
-		next_test()
+
+	if not started
+		$(".btn-start").click ->
+			started = true
+			$(this).remove()
+			$(".btn-next").removeClass("hidden")
+			unsplash()
+	else
+		$(".btn-next").click ->
+			unsplash()
+
+unsplash = () ->
+	$(".test-container").show()
+	$('.splash-screen').addClass("hidden")
+	next_test()
 
 
+splash()
