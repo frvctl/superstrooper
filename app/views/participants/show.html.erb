@@ -1,5 +1,48 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+	<p id="notice"><%= notice %></p>
+
+	<p>
+		<b>Name:</b>
+		<%= @participant.name %>
+	</p>
+
+	<p>
+		<b>Age:</b>
+		<%= @participant.age %>
+	</p>
+
+	<p>
+		<b>Email:</b>
+		<%= @participant.email %>
+	</p>
+
+	<p>
+		<b>Perception Problems?:</b>
+		<%= @participant.perception %>
+	</p>
+
+	<p>
+		<b>Synesthesia?:</b>
+		<%= @participant.synesthesia %>
+	</p>
+
+	<p>
+		<b>Color Blindness?:</b>
+		<%= @participant.blindness %>
+	</p>
 
 
-<%= link_to 'Edit', edit_participant_path(@participant) %> |
-<%= link_to 'Back', participants_path %>
+	<% if @participant.test_taken %>
+		<%= link_to "Stroop Test Results", "/results" %>
+	<% else %>
+		<%= link_to "Take Stroop Test", test_index_path(@participant) %>
+	<% end %>
+
+	<br>
+	<br>
+	<br>
+
+
+	<%= link_to 'Edit', edit_participant_path(@participant) %> |
+	<%= link_to 'Back', participants_path %>
+</div>

@@ -3,7 +3,7 @@ class TestController < ApplicationController
 	# GET /tests.json
 	def index
 		# @tests = Test.all
-
+		@nohead = true
 		# respond_to do |format|
 		# 	format.html # index.html.erb
 		# 	format.json { render json: @tests }

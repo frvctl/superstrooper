@@ -18,7 +18,7 @@ class ParticipantsControllerTest < ActionController::TestCase
 
   test "should create participant" do
     assert_difference('Participant.count') do
-      post :create, participant: {  }
+      post :create, participant: { age: @participant.age, email: @participant.email, name: @participant.name }
     end
 
     assert_redirected_to participant_path(assigns(:participant))
@@ -35,7 +35,7 @@ class ParticipantsControllerTest < ActionController::TestCase
   end
 
   test "should update participant" do
-    put :update, id: @participant, participant: {  }
+    put :update, id: @participant, participant: { age: @participant.age, email: @participant.email, name: @participant.name }
     assert_redirected_to participant_path(assigns(:participant))
   end
 
