@@ -46,6 +46,6 @@ class ParticipantsController < ApplicationController
 	def destroy
 		@participant = Participant.find(params[:id])
 		@participant.destroy
-		respond_with redirect_to participants_url
+		redirect_to participants_url
 	end
 end
