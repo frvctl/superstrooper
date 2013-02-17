@@ -58,9 +58,20 @@ next_test = () ->
 						elapsed: Date.now() - t_start,
 						attempts: attempts
 					})
-					next_test()
+					splash()
 				else
 					$(this).remove()
 
 
 next_test()
+
+splash = () ->
+	$(".test-container").hide()
+	$(".splash-screen").removeClass("hidden")
+	$(".bar").css("width",  (question_num/combinations.length)*100 + "%")
+	$(".btn-next").click ->
+		$(".test-container").show()
+		$('.splash-screen').addClass("hidden")
+		next_test()
+
+
