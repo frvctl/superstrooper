@@ -66,7 +66,7 @@ next_test = () ->
 splash = () ->
 	$(".test-container").hide()
 	$(".splash-screen").removeClass("hidden")
-	$(".progress-text").text("Progress - " + question_num + "/" + combinations.length)
+	$(".progress-text").text(question_num + "/" + combinations.length)
 	$(".bar").css("width",  (question_num/combinations.length)*100 + "%")
 
 	if not started
