@@ -56,7 +56,8 @@ next_test = () ->
 						color: color,
 						word: word,
 						elapsed: Date.now() - t_start,
-						attempts: attempts
+						attempts: attempts,
+						num:question_num
 					})
 					splash()
 				else
@@ -86,11 +87,15 @@ unsplash = () ->
 	next_test()
 
 finished = () ->
-	$.post("/test/submit-data", {  test_data:all_data } )
-	$(".test-container").hide()
-	$(".splash-screen").hide()
-	$(".end-screen").removeClass("hidden")
-	window.location = "/"
+	id = window.location.pathname.split('/')[2]
+	$('form').get(0).setAttribute('action', "/test/"+id+"/submit-data")
+	$("form").append($("<input>", {type: "hidden", name: "test_data"}).val(JSON.stringify(all_data))).submit()
+
+
+
+
+	#window.location = "/participants/" +  id + "/survey"
+
 
 
 splash()

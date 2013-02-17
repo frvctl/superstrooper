@@ -32,8 +32,10 @@
 	</p>
 
 
-	<% if @participant.test_taken %>
-		<%= link_to "Stroop Test Results", "/results" %>
+	<% if @participant.test_taken and @participant.surveyed %>
+		<%= render 'stroopreulsts' %>
+	<% elsif @participant.test_taken and not @participant.surveyed %>
+		<%= link_to "Take Post Test Survey", participant_survey_path(@participant) %>
 	<% else %>
 		<%= link_to "Take Stroop Test", test_index_path(@participant) %>
 	<% end %>

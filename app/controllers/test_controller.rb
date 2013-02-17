@@ -3,8 +3,13 @@ class TestController < ApplicationController
 		@nohead = true
 	end
 
+	def survey
+
+	end
+
 	def record_data
-		@data = params[:test_data]
-		redirect_to root_url
+		@participant = Participant.find(params[:id])
+		@data = ActiveSupport::JSON.decode(params[:test_data])
+		Participant.record_data(@participant, @data)
 	end
 end
