@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Superstrooper</title>
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
+	<head>
+		<title>Superstrooper</title>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<%= stylesheet_link_tag    "application", :media => "all" %>
+		<%= javascript_include_tag "application" %>
+		<%= csrf_meta_tags %>
+	</head>
 <body>
-<% unless @nohead %>
-	<header class="header">
-		<div class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<a class="brand" href="/">
-						<strong> StroopleTrooper </strong>
-						<em class="motto hidden-phone" style= "font-size:small">
-							Giving super stroople tests since a day ago
-						</em>
-					</a>
-					<ul class="nav pull-right">
-						<li> <%= link_to "Participants", participants_path %></li>
-					</ul>
+	<% unless @nohead %>
+		<header class="header">
+			<div class="navbar navbar-fixed-top">
+				<div class="navbar-inner">
+					<div class="container">
+						<a class="brand" href="/">
+							<strong> StroopleTrooper </strong>
+							<em class="motto hidden-phone" style= "font-size:small">
+								Giving super stroople tests since a day ago
+							</em>
+						</a>
+						<ul class="nav pull-right">
+							<li> <%= link_to "Participants", participants_path %></li>
+						</ul>
+					</div>
 				</div>
 			</div>
-		</div>
-	</header>
-<% end %>
-<br>
-<br>
-<br>
-<%= yield %>
+		</header>
+	<% end %>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		<% flash.each do |name, msg| %>
+			<div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+				  <a class="close" href="#">×</a>
+				<%= msg %>
+			</div>
+		<% end %>
+	</div>
+	<%= yield %>
 
 </body>
 </html>

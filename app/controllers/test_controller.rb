@@ -11,6 +11,6 @@ class TestController < ApplicationController
 		@participant = Participant.find(params[:id])
 		@data = ActiveSupport::JSON.decode(params[:test_data])
 		Participant.record_data(@participant, @data)
-		redirect_to survey_participant_path, :notice => "Data Submitted"
+		redirect_to survey_participant_path, :notice => "Test Completed! Your data has been submitted."
 	end
 end
