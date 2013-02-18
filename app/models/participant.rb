@@ -8,6 +8,7 @@ class Participant
 	key :synesthesia, 	String
 	key :perception, 	String
 	key :blindness,	 	String
+	key :altered_state,	String
 	key :test_taken, 	Boolean, :default => false
 	key :survey_taken, 	Boolean, :default => false
 

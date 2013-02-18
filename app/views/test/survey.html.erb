@@ -1,1 +1,10 @@
-<h1> SURVEY THA BETCH </h1>
+<div class="container">
+	<h1> Post Test Survey </h1>
+	<%= form_for(@participant) do |f| %>
+		<div class="field">
+			<%= f.label "Is your mental state different in anyway?" %>
+			<%= f.select :altered_state, ["No", "Yes"] %>
+		</div>
+	<% end %>
+
+</div>

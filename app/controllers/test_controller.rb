@@ -4,7 +4,7 @@ class TestController < ApplicationController
 	end
 
 	def survey
-
+		@participant = Participant.find(params[:id])
 	end
 
 	def record_data
