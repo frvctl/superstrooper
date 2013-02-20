@@ -1,4 +1,7 @@
 <div class="container">
+
+  <%= link_to 'New Participant', new_participant_path, :class => "btn btn-primary btn-large pull-right" %>
+
   <h1>All Participants</h1>
 
   <table class="table">
@@ -14,15 +17,15 @@
       <th></th>
     </tr>
 
+
   <% @participants.each do |participant| %>
     <tr>
-      <td><%= participant.name %></td>
+      <td><%= link_to participant.name,  participant %></td>
       <td><%= participant.age %></td>
       <td><%= participant.email %></td>
       <td><%= participant.perception %></td>
       <td><%= participant.synesthesia %></td>
       <td><%= participant.blindness %></td>
-      <td><%= link_to 'Show', participant %></td>
       <td><%= link_to 'Edit', edit_participant_path(participant) %></td>
       <td><%= link_to 'Destroy', participant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
@@ -31,5 +34,4 @@
 
   <br />
 
-  <%= link_to 'New Participant', new_participant_path %>
 </div>

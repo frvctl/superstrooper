@@ -7,23 +7,23 @@ window.addEventListener 'load', () ->
 , false
 
 color_map = {
-	Red: "#F2003C",
-	Brown: "#855A2D",
-	Green: "#2CDE6A",
-	Purple:"#9F5AC7"
+	Red: "#CC0000",
+	Brown: "#7B4A12",
+	Green: "#266A2E",
+	Purple:"#8C489F"
 }
 
 combinations = [
-	{"color":"purple", "text":"brown"},
-	{"color":"red", "text":"red"},
-	{"color":"green", "text":"purple"},
-	{"color":"brown", "text":"purple"},
-	{"color":"purple", "text":"green"},
-	{"color":"brown", "text":"brown"},
-	{"color":"purple", "text":"purple"},
-	{"color":"red", "text":"green"},
-	{"color":"purple", "text":"brown"},
-	{"color":"green", "text":"purple"}
+	{"color":"Purple", "text":"Brown"},
+	{"color":"Red", "text":"Red"},
+	{"color":"Green", "text":"Purple"},
+	{"color":"Brown", "text":"Purple"},
+	{"color":"Purple", "text":"Green"},
+	{"color":"Brown", "text":"Brown"},
+	{"color":"Purple", "text":"Purple"},
+	{"color":"Red", "text":"Green"},
+	{"color":"Purple", "text":"Brown"},
+	{"color":"Green", "text":"Purple"}
 ]
 
 fisher_yates = (arr) ->
@@ -41,7 +41,7 @@ next_test = () ->
 	t_start = Date.now()
 	color = combinations[question_num].color
 	word = combinations[question_num].text
-	$(".test-text").text(word).css("color", color)
+	$(".test-text").text(word).css("color", color_map[color])
 	$("#button_list").empty()
 	fisher_yates(Object.keys(color_map)).map (name) ->
 		$("<button>")
@@ -50,14 +50,15 @@ next_test = () ->
 			.appendTo("#button_list")
 			.one 'click', ->
 				attempts += 1
-				if name.toLowerCase() is color
+				if name is color
 					question_num += 1
 					all_data.push({
 						color: color,
 						word: word,
 						elapsed: Date.now() - t_start,
 						attempts: attempts,
-						num:question_num
+						num:question_num,
+						isInterference:false
 					})
 					splash()
 				else

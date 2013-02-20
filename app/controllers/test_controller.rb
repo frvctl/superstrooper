@@ -7,6 +7,14 @@ class TestController < ApplicationController
 		@participant = Participant.find(params[:id])
 	end
 
+	def results
+		@participant = Participant.find(params[:id])
+	end
+
+	def data
+		render :json => Participant.all
+	end
+
 	def record_data
 		@participant = Participant.find(params[:id])
 		@data = ActiveSupport::JSON.decode(params[:test_data])
