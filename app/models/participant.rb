@@ -19,8 +19,7 @@ class Participant
 								:text_color => test_data["color"],
 								:response_time => test_data["elapsed"],
 								:question_num => test_data["num"],
-								:attempts => test_data["attempts"],
-								:isInterference => test_data["isInterference"]
+								:attempts => test_data["attempts"]
 							)
 					participant.tests.push(aTest)
 					participant.test_taken = true

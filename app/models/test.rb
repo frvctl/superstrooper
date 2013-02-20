@@ -6,6 +6,5 @@ class Test
 	key :response_time, 	Integer
 	key :question_num, 	Integer
 	key :attempts, 		Integer
-	key :isInterference, 	Boolean
 
 end

@@ -1,6 +1,15 @@
 question_num = 0
+display_num = 0
 all_data = []
 started = false
+control_over = false
+color_instructions = "<strong> Instructions</strong> Click on
+			the button whose text corresponds to the
+			<b>color</b> of the large text below. Do
+			this as <b>quickly and accurately</b> as possible."
+
+control_instructions = "<strong> Instructions</strong> Click on the button that is the same as the word.
+			 Do this as <b>quickly and accurately</b> as possible."
 
 window.addEventListener 'load', () ->
 	new FastClick(document.body);
@@ -12,6 +21,14 @@ color_map = {
 	Green: "#266A2E",
 	Purple:"#8C489F"
 }
+
+controls = [
+	{"color":"black", "text":"Green"},
+	{"color":"black", "text":"Red"},
+	{"color":"black", "text":"Purple"},
+	{"color":"black", "text":"Brown"},
+]
+
 
 combinations = [
 	{"color":"Purple", "text":"Brown"},
@@ -35,14 +52,23 @@ fisher_yates = (arr) ->
 		arr[i] = t
 	arr
 
-
 next_test = () ->
 	attempts = 0
 	t_start = Date.now()
-	color = combinations[question_num].color
-	word = combinations[question_num].text
+
+	if !control_over
+		word = controls[question_num].text
+		color = "black"
+		test = word
+	else if control_over
+		color = combinations[question_num - controls.length].color
+		word = combinations[question_num - controls.length].text
+		test = color
+
+	$(".phase-transition").hide()
 	$(".test-text").text(word).css("color", color_map[color])
 	$("#button_list").empty()
+
 	fisher_yates(Object.keys(color_map)).map (name) ->
 		$("<button>")
 			.addClass("btn btn-large")
@@ -50,25 +76,35 @@ next_test = () ->
 			.appendTo("#button_list")
 			.one 'click', ->
 				attempts += 1
-				if name is color
+				if name is test
 					question_num += 1
 					all_data.push({
 						color: color,
 						word: word,
 						elapsed: Date.now() - t_start,
 						attempts: attempts,
-						num:question_num,
-						isInterference:false
+						num:question_num
 					})
-					splash()
+					test_logic(true)
 				else
 					$(this).remove()
 
-splash = () ->
-	$(".test-container").hide()
-	$(".splash-screen").removeClass("hidden")
-	$(".progress-text").text(question_num + "/" + combinations.length)
-	$(".bar").css("width",  (question_num/combinations.length)*100 + "%")
+test_logic = (spla) ->
+	if control_over
+		the_obj = combinations
+		display_num = question_num - controls.length
+	else
+		the_obj = controls
+		display_num = question_num
+
+	if spla
+		splash(display_num, the_obj)
+
+	if not control_over
+		$(".btn-start").one 'click', ->
+			$(this).remove()
+			$(".btn-next").removeClass("hidden")
+			unsplash()
 
 	if not started
 		$(".btn-start").one 'click', ->
@@ -76,27 +112,54 @@ splash = () ->
 			$(this).remove()
 			$(".btn-next").removeClass("hidden")
 			unsplash()
-	else if question_num < combinations.length
+
+	else if display_num < the_obj.length
 		$(".btn-next").one 'click', ->
 			unsplash()
 	else
-		finished()
+		if the_obj is combinations
+			finished()
+		else
+			if display_num > controls.length-1
+				switch_up()
+
+splash = (display_num, the_obj) ->
+	$(".test-container").hide()
+	$(".splash-screen").removeClass("hidden")
+	$(".progress-text").text(display_num + "/" + the_obj.length)
+	$(".bar").css("width",  (display_num/the_obj.length)*100 + "%")
+
+phase = (ph) ->
+	if control_over
+		instructions = color_instructions
+		$(".btn-next").removeClass("hidden")
+	else
+		instructions = control_instructions
+
+	$(".test-container").hide()
+	$(".phase-transition").show()
+	$(".splash-screen").addClass("hidden")
+	$(".instructions").replaceWith("<div class='instructions'>"+instructions+"</div>")
+	$(".phase-notice").text("Test Phase " + ph)
+
+	test_logic(false)
+
+switch_up = () ->
+	$(".control").remove()
+	$(".interference").removeClass("hidden")
+	$(".no-interference").remove()
+	control_over = true
+	phase(2)
 
 unsplash = () ->
 	$(".test-container").show()
 	$('.splash-screen').addClass("hidden")
-	next_test()
+	next_test(!control_over)
 
 finished = () ->
 	id = window.location.pathname.split('/')[2]
 	$('form').get(0).setAttribute('action', "/test/"+id+"/submit-data")
 	$("form").append($("<input>", {type: "hidden", name: "test_data"}).val(JSON.stringify(all_data))).submit()
 
+phase(1)
 
-
-
-	#window.location = "/participants/" +  id + "/survey"
-
-
-
-splash()
