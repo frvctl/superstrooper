@@ -11,8 +11,17 @@ class TestController < ApplicationController
 		@participant = Participant.find(params[:id])
 	end
 
+	def result
+		@participant = Participant.find(params[:id])
+	end
+
 	def data
 		render :json => Participant.all
+	end
+
+	def single_data
+		@participant = Participant.find(params[:id])
+		render :json => [@participant]
 	end
 
 	def record_data

@@ -1,8 +1,15 @@
 #= require d3.v2.js
 
+id = window.location.pathname.split('/')[2]
+
 get_data = () ->
-	$.get '/data', (data) ->
-		chart(data)
+	if id
+		$.get '/participants/' + id + '/data', (data) ->
+			console.log(data)
+			chart(data)
+	else
+		$.get '/data', (data) ->
+			chart(data)
 
 get_data()
 
@@ -43,7 +50,7 @@ chart = (values) ->
 		.scale(x)
 		.orient("bottom");
 
-	svg = d3.select("body").append("svg")
+	svg = d3.select("#bar").append("svg")
 			.attr("width", width + margin.left + margin.right)
 			.attr("height", height + margin.top + margin.bottom)
 		.append("g")

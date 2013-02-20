@@ -7,6 +7,8 @@ Superstrooper::Application.routes.draw do
 		member do
 			resources :test, :only => [:index]
 			get '/survey', :to => 'test#survey'
+			get '/results', :to => 'test#result'
+			get '/data', :to => 'test#single_data'
 		end
 	end
 
