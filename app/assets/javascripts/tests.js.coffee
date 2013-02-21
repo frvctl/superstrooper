@@ -8,11 +8,8 @@ color_instructions = "<strong> Instructions</strong> Click on
 			<b>color</b> of the large text below. Do
 			this as <b>quickly and accurately</b> as possible."
 
-control_instructions = "<strong> Instructions</strong> Click on the button that is the same as the word.
-			 Do this as <b>quickly and accurately</b> as possible."
-
 window.addEventListener 'load', () ->
-	new FastClick(document.body);
+	new FastClick(document.body)
 , false
 
 color_map = {
@@ -23,21 +20,27 @@ color_map = {
 }
 
 controls = [
-	{"color":"black", "text":"Green"},
-	{"color":"black", "text":"Red"},
-	{"color":"black", "text":"Purple"},
-	{"color":"black", "text":"Brown"},
+	{"color":"Green", "text":"Green"},
+	{"color":"Red", "text":"Red"},
+	{"color":"Purple", "text":"Purple"},
+	{"color":"Brown", "text":"Brown"},
+	{"color":"Green", "text":"Green"},
+	{"color":"Red", "text":"Red"},
+	{"color":"Purple", "text":"Purple"},
+	{"color":"Brown", "text":"Brown"},
+	{"color":"Green", "text":"Green"},
+	{"color":"Red", "text":"Red"},
 ]
 
 
 combinations = [
 	{"color":"Purple", "text":"Brown"},
-	{"color":"Red", "text":"Red"},
+	{"color":"Red", "text":"Purple"},
 	{"color":"Green", "text":"Purple"},
-	{"color":"Brown", "text":"Purple"},
+	{"color":"Brown", "text":"Red"},
 	{"color":"Purple", "text":"Green"},
-	{"color":"Brown", "text":"Brown"},
-	{"color":"Purple", "text":"Purple"},
+	{"color":"Brown", "text":"Red"},
+	{"color":"Purple", "text":"Brown"},
 	{"color":"Red", "text":"Green"},
 	{"color":"Purple", "text":"Brown"},
 	{"color":"Green", "text":"Purple"}
@@ -58,12 +61,10 @@ next_test = () ->
 
 	if !control_over
 		word = controls[question_num].text
-		color = "black"
-		test = word
+		color = controls[question_num].color
 	else if control_over
 		color = combinations[question_num - controls.length].color
 		word = combinations[question_num - controls.length].text
-		test = color
 
 	$(".phase-transition").hide()
 	$(".test-text").text(word).css("color", color_map[color])
@@ -76,7 +77,7 @@ next_test = () ->
 			.appendTo("#button_list")
 			.one 'click', ->
 				attempts += 1
-				if name is test
+				if name is color
 					question_num += 1
 					all_data.push({
 						color: color,
@@ -131,15 +132,12 @@ splash = (display_num, the_obj) ->
 
 phase = (ph) ->
 	if control_over
-		instructions = color_instructions
 		$(".btn-next").removeClass("hidden")
-	else
-		instructions = control_instructions
 
 	$(".test-container").hide()
 	$(".phase-transition").show()
 	$(".splash-screen").addClass("hidden")
-	$(".instructions").replaceWith("<div class='instructions'>"+instructions+"</div>")
+	$(".instructions").replaceWith("<div class='instructions'>"+color_instructions+"</div>")
 	$(".phase-notice").text("Test Phase " + ph)
 
 	test_logic(false)

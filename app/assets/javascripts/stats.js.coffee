@@ -27,10 +27,10 @@ chart = (values) ->
 	real_tests = d3.merge(values.map((e) -> return e.tests))
 
 	parts = [real_tests.filter((t) ->
-		return t.text_color == "black"
+		return t.text_color == t.display_word
 	).map((e) -> return e.response_time),
 	real_tests.filter((t) ->
-		return t.text_color != "black"
+		return t.text_color != t.display_word
 	).map((e) -> return e.response_time)]
 
 	hist = parts.map((e) ->
