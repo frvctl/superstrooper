@@ -14,7 +14,7 @@ window.addEventListener 'load', () ->
 
 color_map = {
 	Red: "#CC0000",
-	Brown: "#7B4A12",
+	Brown: "#964B00",
 	Green: "#266A2E",
 	Purple:"#8C489F"
 }
