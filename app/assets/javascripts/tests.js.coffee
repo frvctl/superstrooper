@@ -30,17 +30,37 @@ controls = [
 	{"color":"Brown", "text":"Brown"},
 	{"color":"Green", "text":"Green"},
 	{"color":"Red", "text":"Red"},
+	{"color":"Green", "text":"Green"},
+	{"color":"Red", "text":"Red"},
+	{"color":"Purple", "text":"Purple"},
+	{"color":"Brown", "text":"Brown"},
+	{"color":"Green", "text":"Green"},
+	{"color":"Red", "text":"Red"},
+	{"color":"Brown", "text":"Brown"},
+	{"color":"Purple", "text":"Purple"},
+	{"color":"Green", "text":"Green"},
+	{"color":"Red", "text":"Red"},
 ]
 
 
 combinations = [
 	{"color":"Purple", "text":"Brown"},
+	{"color":"Brown", "text":"Red"},
 	{"color":"Red", "text":"Purple"},
 	{"color":"Green", "text":"Purple"},
 	{"color":"Brown", "text":"Red"},
 	{"color":"Purple", "text":"Green"},
 	{"color":"Brown", "text":"Red"},
 	{"color":"Purple", "text":"Brown"},
+	{"color":"Red", "text":"Green"},
+	{"color":"Purple", "text":"Brown"},
+	{"color":"Green", "text":"Purple"}
+	{"color":"Brown", "text":"Red"},
+	{"color":"Purple", "text":"Green"},
+	{"color":"Red", "text":"Purple"},
+	{"color":"Brown", "text":"Red"},
+	{"color":"Purple", "text":"Brown"},
+	{"color":"Green", "text":"Purple"},
 	{"color":"Red", "text":"Green"},
 	{"color":"Purple", "text":"Brown"},
 	{"color":"Green", "text":"Purple"}
