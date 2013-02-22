@@ -14,56 +14,47 @@ window.addEventListener 'load', () ->
 
 color_map = {
 	Red: "#CC0000",
+	Blue: "#007FFF"
 	Brown: "#964B00",
 	Green: "#266A2E",
-	Purple:"#8C489F"
+	Purple:"#B23AEE"
 }
 
 controls = [
 	{"color":"Green", "text":"Green"},
 	{"color":"Red", "text":"Red"},
 	{"color":"Purple", "text":"Purple"},
-	{"color":"Brown", "text":"Brown"},
+	{"color":"Blue", "text":"Blue"},
 	{"color":"Green", "text":"Green"},
-	{"color":"Red", "text":"Red"},
+	{"color":"Blue", "text":"Blue"},
 	{"color":"Purple", "text":"Purple"},
 	{"color":"Brown", "text":"Brown"},
 	{"color":"Green", "text":"Green"},
 	{"color":"Red", "text":"Red"},
-	{"color":"Green", "text":"Green"},
+	{"color":"Blue", "text":"Blue"},
 	{"color":"Red", "text":"Red"},
 	{"color":"Purple", "text":"Purple"},
 	{"color":"Brown", "text":"Brown"},
 	{"color":"Green", "text":"Green"},
-	{"color":"Red", "text":"Red"},
-	{"color":"Brown", "text":"Brown"},
-	{"color":"Purple", "text":"Purple"},
-	{"color":"Green", "text":"Green"},
-	{"color":"Red", "text":"Red"},
 ]
 
 
 combinations = [
-	{"color":"Purple", "text":"Brown"},
+	{"color":"Blue", "text":"Brown"},
 	{"color":"Brown", "text":"Red"},
-	{"color":"Red", "text":"Purple"},
-	{"color":"Green", "text":"Purple"},
+	{"color":"Red", "text":"Blue"},
+	{"color":"Blue", "text":"Purple"},
 	{"color":"Brown", "text":"Red"},
-	{"color":"Purple", "text":"Green"},
+	{"color":"Purple", "text":"Blue"},
 	{"color":"Brown", "text":"Red"},
 	{"color":"Purple", "text":"Brown"},
-	{"color":"Red", "text":"Green"},
-	{"color":"Purple", "text":"Brown"},
+	{"color":"Blue", "text":"Green"},
+	{"color":"Purple", "text":"Blue"},
 	{"color":"Green", "text":"Purple"}
-	{"color":"Brown", "text":"Red"},
+	{"color":"Blue", "text":"Blue"},
 	{"color":"Purple", "text":"Green"},
 	{"color":"Red", "text":"Purple"},
 	{"color":"Brown", "text":"Red"},
-	{"color":"Purple", "text":"Brown"},
-	{"color":"Green", "text":"Purple"},
-	{"color":"Red", "text":"Green"},
-	{"color":"Purple", "text":"Brown"},
-	{"color":"Green", "text":"Purple"}
 ]
 
 fisher_yates = (arr) ->
